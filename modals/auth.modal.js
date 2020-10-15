@@ -40,6 +40,7 @@ const userScheama = new mongoose.Schema(
 userScheama
   .virtual('password')
   .set(function(password) {
+    // set password note you must use normal function not arrow function
     this._password = password;
     this.salt = this.makeSalt();
     this.hashed_password = this.encryptPassword(password);
@@ -50,10 +51,12 @@ userScheama
 
 // methods
 userScheama.methods = {
+// Compare password between plain get from user and hashed
   authenticate: function(plainText) {
     return this.encryptPassword(plainText) === this.hashed_password;
   },
 
+//   Encrypt password
   encryptPassword: function(password) {
     if (!password) return '';
     try {
@@ -65,7 +68,7 @@ userScheama.methods = {
       return '';
     }
   },
-
+  // Generate salt
   makeSalt: function() {
     return Math.round(new Date().valueOf() * Math.random()) + '';
   }
