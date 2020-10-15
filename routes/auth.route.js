@@ -8,8 +8,19 @@ const {
      registerController
 } = require('../controllers/auth.controller.js');
 
+// Load Validations
+const {
+    validSign,
+    validLogin,
+    forgotPasswordValidator,
+    resetPasswordValidator
+} = require('../helpers/valid');
 
-router.post('/register',registerController);
+router.post('/register',
+validSign,
+registerController);
+
+router.post('/activation', activationController);
 
 
 module.exports = router;
