@@ -10,7 +10,7 @@ const fetch = require('node-fetch');
 
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
-const expressJWT = require('express-jwt');
+// const expressJwt = require('express-jwt');
 
 // Custom error handler for handling error messages
 const { errorHandler } = require('../helpers/dbErrorHandling');
@@ -128,7 +128,7 @@ exports.activationController = (req, res) => {
   }
 };
 
-/*
+
 exports.signinController = (req, res) => {
   const { email, password } = req.body;
   const errors = validationResult(req);
@@ -160,7 +160,7 @@ exports.signinController = (req, res) => {
         },
         process.env.JWT_SECRET,
         {
-          expiresIn: '7d'
+          expiresIn: '7d' //Token valid for 7 days
         }
       );
       const { _id, name, email, role } = user;
@@ -178,9 +178,11 @@ exports.signinController = (req, res) => {
   }
 };
 
+/*
 exports.requireSignin = expressJwt({
   secret: process.env.JWT_SECRET // req.user._id
 });
+
 
 exports.adminMiddleware = (req, res, next) => {
   User.findById({
@@ -202,6 +204,7 @@ exports.adminMiddleware = (req, res, next) => {
     next();
   });
 };
+*/
 
 exports.forgotPasswordController = (req, res) => {
   const { email } = req.body;
@@ -338,11 +341,12 @@ exports.resetPasswordController = (req, res) => {
   }
 };
 
+
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT);
 // Google Login
 exports.googleController = (req, res) => {
   const { idToken } = req.body;
-
+ 
   client
     .verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT })
     .then(response => {
@@ -352,8 +356,9 @@ exports.googleController = (req, res) => {
         User.findOne({ email }).exec((err, user) => {
           if (user) {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-              expiresIn: '7d'
+              expiresIn: '7d'  //expires in 7 days
             });
+            // Send responses to client side(react) - token and user info
             const { _id, email, name, role } = user;
             return res.json({
               token,
@@ -446,4 +451,3 @@ exports.facebookController = (req, res) => {
   );
 };
 
-*/
