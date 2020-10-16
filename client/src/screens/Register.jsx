@@ -1,4 +1,4 @@
-// jshint esversion:6
+// jshint esversion:9
 
 import React, { useState } from 'react';
 import authSvg from '../assets/auth.svg';
