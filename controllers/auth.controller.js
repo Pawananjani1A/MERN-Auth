@@ -178,9 +178,10 @@ exports.signinController = (req, res) => {
   }
 };
 
-/*
-exports.requireSignin = expressJwt({
-  secret: process.env.JWT_SECRET // req.user._id
+
+ exports.requireSignin = expressJwt({
+  secret:process.env.JWT_SECRET,
+  algorithms: ['HS256']
 });
 
 
@@ -204,7 +205,7 @@ exports.adminMiddleware = (req, res, next) => {
     next();
   });
 };
-*/
+
 
 exports.forgotPasswordController = (req, res) => {
   const { email } = req.body;

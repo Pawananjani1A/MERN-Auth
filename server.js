@@ -19,10 +19,11 @@ connectDB();
 
 // bodyParser
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Load all routes
 const authRouter = require('./routes/auth.route.js');
-// const userRouter = require('./routes/user.route');
+const userRouter = require('./routes/user.route');
 
 // config for only development
 if(process.env.NODE_ENV==='development')
@@ -39,7 +40,7 @@ if(process.env.NODE_ENV==='development')
 
 // Use Routes
 app.use('/api',authRouter);
-// app.use('/api',userRouter);
+app.use('/api',userRouter);
 
 app.use((req, res)=>{
     res.status(404).json({

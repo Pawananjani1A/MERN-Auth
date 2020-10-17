@@ -142,8 +142,8 @@ const Login = ({ history }) => {
                   )}
                 ></GoogleLogin>
                 <FacebookLogin
-                  appId={`${process.env.REACT_APP_FACEBOOK_CLIENT}`}
-                  autoLoad={false}
+                  appId={`${process.env.REACT_APP_FACEBOOK_CLIENT}`} //facebook app id
+                  autoLoad={false} //If true , it wiil automatically login with facebook without asking us
                   callback={responseFacebook}
                   render={renderProps => (
                     <button
