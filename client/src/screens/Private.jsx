@@ -4,7 +4,7 @@ import authSvg from '../assets/update.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { updateUser, isAuth, getCookie, signout } from '../helpers/auth';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const Private = ({ history }) => {
   const [formData, setFormData] = useState({

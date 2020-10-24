@@ -1,7 +1,7 @@
 // jshint esversion:6
 
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { signout } from './helpers/auth';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -14,7 +14,7 @@ function App({ history }) {
           <div className='mt-12 flex flex-col items-center'>
             <h1 className='text-2xl xl:text-2xl font-extrabold  text-center '>
               Ultimate Auth with Email & Facebook & Google with diferent roles,
-              email verification & Forget passwored{' '}
+              email verification & Forget password{' '}
             </h1>
             <div className='w-full flex-1 mt-8 text-indigo-500'>
               <div className='my-12 border-b text-center'>
